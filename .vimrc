@@ -24,6 +24,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 "Set the leader and change exit from esc to jj 
 let mapleader = ","
 inoremap jj <ESC>
+inoremap hh <ESC>
 
 nmap <silent> <C-f> :CommandTFlush<CR>
 nmap <C-k> D
@@ -40,7 +41,11 @@ nnoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 nnoremap t l
-nnoremap dt dl
+xnoremap t l
+nnoremap dt d
+
+"delete a word and insert
+nnoremap di dwi
 
 "Saving and quiting short-cuts
 nnoremap <leader>w :w<CR>
