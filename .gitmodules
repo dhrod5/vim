@@ -12,7 +12,7 @@
 	url = git://github.com/sjl/gundo.vim.git
 [submodule "bundle/ack"]
 	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
+	url = git://github.com/mileszs/ack.vim.git 
 [submodule "bundle/vim-matchit"]
 	path = bundle/vim-matchit
 	url = git://github.com/edsono/vim-matchit.git
@@ -21,7 +21,7 @@
 	url = git://github.com/tpope/vim-surround.git
 [submodule "bundle/vimPdb"]
 	path = bundle/vimPdb
-	url = https://github.com/vim-scripts/VimPdb.git
+	url = git://github.com/vim-scripts/VimPdb.git 
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
+	url = git://github.com/scrooloose/nerdcommenter.git 
