@@ -8,6 +8,10 @@ set nocompatible
 set ignorecase
 set autoindent
 set smartcase
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+"Carriage Return to toggle between files in window
+nnoremap <CR> :wa<CR><C-^>
 
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=2
 autocmd BufNewFile,BufRead *.json set ft=javascript
