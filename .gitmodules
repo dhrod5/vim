@@ -25,3 +25,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git 
+[submodule "bundle/vim-ipython"]
+	path = bundle/vim-ipython
+	url = git://github.com/ivanov/vim-ipython.git
