@@ -9,18 +9,26 @@ set ignorecase
 set autoindent
 set smartcase
 set viminfo='10,\"100,:20,%,n~/.viminfo
+set textwidth=80
+set softtabstop=4
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
 "Carriage Return to toggle between files in window
 nnoremap <CR> :wa<CR><C-^>
 
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=2
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
+au BufRead,BufNewFile *conf set tabstop=2
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
 
 "au! BufRead,BufNewFile *.json setfiletype json 
 "au! BufRead,BufNewFile *.conf setfiletype json 
-au BufRead,BufNewFile *.py,*pyw set shiftwidth=2
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
+au BufRead,BufNewFile *.conf set shiftwidth=2
 au BufRead,BufNewFile *.py,*.pyw set expandtab
+
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 :set laststatus=2
@@ -28,7 +36,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 "Set the leader and change exit from esc to jj 
 let mapleader = ","
 inoremap jj <ESC>
-inoremap hh <ESC>
+
 
 nmap <silent> <C-f> :CommandTFlush<CR>
 nmap <C-k> D
@@ -56,6 +64,9 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :q!<CR>
+
+nnoremap <leader>p :set paste<CR>
+nnoremap <leader>np :set nopaste<CR>
 
 "hl search highlights as you search
 set hlsearch
