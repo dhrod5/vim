@@ -13,7 +13,7 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 "Carriage Return to toggle between files in window
 nnoremap <CR> :wa<CR><C-^>
 
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=2
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
 
@@ -86,4 +86,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-t> <C-w>l
 nnoremap <leader>v <C-w>v<C-w>l
+nnoremap <leader>d <C-w>-
+nnoremap <leader>< <C-w><
+nnoremap <leader>> <C-w>>
+nnoremap <leader>k <C-w>+
+nnoremap <leader>h :split<CR>
 
