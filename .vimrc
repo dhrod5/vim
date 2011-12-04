@@ -13,13 +13,13 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 "Carriage Return to toggle between files in window
 nnoremap <CR> :wa<CR><C-^>
 
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=2
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
 
 "au! BufRead,BufNewFile *.json setfiletype json 
 "au! BufRead,BufNewFile *.conf setfiletype json 
-au BufRead,BufNewFile *.py,*pyw set shiftwidth=2
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
