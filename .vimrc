@@ -1,8 +1,15 @@
+autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 filetype plugin indent on
-autocmd FileType python set complete+=k~/.vim/syntax/python3.0.vim isk+=.,(
-call pathogen#runtime_append_all_bundles() 
-let mapleader = "," 
 syntax enable
+
+set background=dark
+
+call pathogen#runtime_append_all_bundles() 
+
+"Set the leader and change exit from esc to jj 
+let mapleader = ","
+inoremap jj <ESC>
+
 set backspace=indent,eol,start
 set nocompatible
 set ignorecase
@@ -11,19 +18,19 @@ set smartcase
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set textwidth=80
 set softtabstop=4
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+
+highlight OverLength ctermbg=green ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-"Carriage Return to toggle between files in window
-nnoremap <CR> :wa<CR><C-^>
-
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
-au BufRead,BufNewFile *conf set tabstop=4
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
+autocmd BufNewFile,BufRead *.config set ft=javascript
 
-"au! BufRead,BufNewFile *.json setfiletype json 
-"au! BufRead,BufNewFile *.conf setfiletype json 
+au! BufRead,BufNewFile *.json setfiletype json 
+au! BufRead,BufNewFile *.conf setfiletype json 
+au! BufRead,BufNewFile *.config setfiletype json 
+
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.conf set shiftwidth=2
 au BufRead,BufNewFile *.py,*.pyw set expandtab
@@ -33,18 +40,18 @@ autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 :set laststatus=2
 
-"Set the leader and change exit from esc to jj 
-let mapleader = ","
-inoremap jj <ESC>
-
-
 nmap <silent> <C-f> :CommandTFlush<CR>
 nmap <C-k> D
 nmap <C-y> p
 
 nnoremap ; :
 
+"Carriage Return to toggle between files in window
+nnoremap <CR> :wa<CR><C-^>
+
+"reformats and saves json file if you have json_reformat installed
 map <leader>j <Esc>:%!json_reformat <CR>
+
 "Disable the arrows to force me to learn
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -73,17 +80,16 @@ set hlsearch
 nnoremap <leader>k :nohlsearch<CR>
 
 nnoremap <leader>c <leader>c<space>
+
 " Folding set up 
 set foldmethod=indent
 set nofoldenable
 nnoremap <leader>l zR
 nnoremap <leader>m zM
 
-
 " Execute file being edited with <Shift> + e:
 nnoremap <S-e> :w<CR>:!/opt/py27/bin/python %:p
 nnoremap <S-e>v :w<CR>:!/opt/py27/bin/python %:p --verbose
-
 
 nnoremap <leader>f :CommandTFlush<CR>
 " remap the nerdcommenter toggle to just leader c
@@ -103,3 +109,4 @@ nnoremap <leader>> <C-w>>
 nnoremap <leader>k <C-w>+
 nnoremap <leader>h :split<CR>
 
+let g:pydiction_location='~/.vim/after/ftplugin/pydiction/complete-dict'
