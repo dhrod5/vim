@@ -8,14 +8,19 @@ call pathogen#runtime_append_all_bundles()
 
 au FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType java set omnifunc=javacomplete#Complete
+"autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
-let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
+let g:SuperTabDefaultCompletionType = "context"
+"autocmd FileType java let g:SuperTabDefaultCompletionType = "<C-N>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+set tags=~/tmp/tags
 
 
 "Set the leader and change exit from esc to jj 
@@ -41,6 +46,7 @@ autocmd BufNewFile,BufRead *.config set ft=javascript
 au! BufRead,BufNewFile *.json setfiletype json 
 au! BufRead,BufNewFile *.conf setfiletype json 
 au! BufRead,BufNewFile *.config setfiletype json 
+au! BufRead,BufNewFile *.scala setfiletype scala
 
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
@@ -48,6 +54,8 @@ au BufRead,BufNewFile *.conf set shiftwidth=2
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+" Nearest source control ancestor
+let g:ctrlp_working_path_mode=2  
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 :set laststatus=2
