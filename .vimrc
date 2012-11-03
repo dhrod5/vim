@@ -7,19 +7,19 @@ set background=dark
 call pathogen#runtime_append_all_bundles() 
 
 au FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType java set omnifunc=javacomplete#Complete
-"autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-au FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType java set omnifunc=javacomplete#Complete
+""autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"au FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType c set omnifunc=ccomplete#Complete
 
-set completeopt=menuone,longest,preview
-let g:SuperTabDefaultCompletionType = "context"
-"autocmd FileType java let g:SuperTabDefaultCompletionType = "<C-N>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"set completeopt=menuone,longest,preview
+"let g:SuperTabDefaultCompletionType = "context"
+""autocmd FileType java let g:SuperTabDefaultCompletionType = "<C-N>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
 set tags=~/tmp/tags
 
 
@@ -129,4 +129,4 @@ nnoremap <leader>> <C-w>>
 nnoremap <leader>k <C-w>+
 nnoremap <leader>h :split<CR>
 
-let g:pydiction_location='~/.vim/after/ftplugin/pydiction/complete-dict'
+"let g:pydiction_location='~/.vim/after/ftplugin/pydiction/complete-dict'
