@@ -3,10 +3,11 @@ syntax enable
 
 set background=dark
 
-"set runtimepath+=~/.vim/bundle/ultisnips
+set runtimepath+=~/.vim/bundle/ultisnips
+"set runtimepath+=~/.vim/snips
 
 filetype plugin indent on
-let g:UltiSnipsSnippetsDir="~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 let g:UltiSnipsUsePythonVersion = 2
 call pathogen#runtime_append_all_bundles() 
 let g:UltiSnipsExpandTrigger="<tab>"
