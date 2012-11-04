@@ -1,12 +1,20 @@
 autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-filetype plugin indent on
 syntax enable
 
 set background=dark
 
-call pathogen#runtime_append_all_bundles() 
+"set runtimepath+=~/.vim/bundle/ultisnips
 
-au FileType python set omnifunc=pythoncomplete#Complete
+filetype plugin indent on
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsUsePythonVersion = 2
+call pathogen#runtime_append_all_bundles() 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+
+"au FileType python set omnifunc=pythoncomplete#Complete
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType java set omnifunc=javacomplete#Complete
 ""autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
@@ -39,6 +47,7 @@ set softtabstop=4
 highlight OverLength ctermbg=green ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+autocmd BufNewFile,BufRead *.py set ft=python
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
 autocmd BufNewFile,BufRead *.config set ft=javascript
@@ -47,18 +56,20 @@ au! BufRead,BufNewFile *.json setfiletype json
 au! BufRead,BufNewFile *.conf setfiletype json 
 au! BufRead,BufNewFile *.config setfiletype json 
 au! BufRead,BufNewFile *.scala setfiletype scala
+au! BufRead,BufNewFile *.py setfiletype python
+au! BufRead,BufNewFile *.c setfiletype c
 
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.conf set shiftwidth=2
-au BufRead,BufNewFile *.py,*.pyw set expandtab
+"au BufRead,BufNewFile *.py,*.pyw set expandtab
 
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 " Nearest source control ancestor
-let g:ctrlp_working_path_mode=2  
+"let g:ctrlp_working_path_mode=2  
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-:set laststatus=2
+set laststatus=2
 
 nmap <silent> <C-f> :CommandTFlush<CR>
 nmap <C-k> D
@@ -128,5 +139,3 @@ nnoremap <leader>< <C-w><
 nnoremap <leader>> <C-w>>
 nnoremap <leader>k <C-w>+
 nnoremap <leader>h :split<CR>
-
-"let g:pydiction_location='~/.vim/after/ftplugin/pydiction/complete-dict'
