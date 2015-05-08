@@ -1,54 +1,74 @@
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+"load everything from pathogen
+filetype off
+execute pathogen#infect()
+filetype plugin indent on
+
+autocmd FileType python set complete+=k~/.vim/syntax/python.vim 
 syntax enable
 
+"keep the cursor in the middle of the page
+set scrolloff=80
+"relative numbering
+set relativenumber
+"if you print from vim: single sided, 14pt margins, with line numbers
+set printoptions=duplex:off,left:14pt,number:y
+"start searching while typing
+set incsearch
+
 set background=dark
+colorscheme solarized
+let g:solarized_termcolors=16
 
-set runtimepath+=~/.vim/bundle/ultisnips
-"set runtimepath+=~/.vim/snips
+"close vim if only NERDTree window left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"shortcut to turn on NERDTree
+command Nerd NERDTree
+"disable the arrows that don't work
+let g:NERDTreeDirArrows=0
+" have nerdtree show hidden files
+let NERDTreeShowHidden=1
+" sort dotfiles first in directories
+let NERDTreeSortHiddenFirst=1
 
-filetype plugin indent on
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-let g:UltiSnipsUsePythonVersion = 2
-call pathogen#runtime_append_all_bundles() 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+au FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType pyrex set expandtab shiftwidth=4 softtabstop=4 autoindent 
+autocmd FileType ruby set expandtab shiftwidth=2 softtabstop=2 autoindent 
 
-
-"au FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType java set omnifunc=javacomplete#Complete
-""autocmd FileType java set completefunc=javacomplete#CompleteParamsInfo
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"au FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType c set omnifunc=ccomplete#Complete
-
-"set completeopt=menuone,longest,preview
-"let g:SuperTabDefaultCompletionType = "context"
-""autocmd FileType java let g:SuperTabDefaultCompletionType = "<C-N>"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
-set tags=~/tmp/tags
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
 
 
 "Set the leader and change exit from esc to jj 
 let mapleader = ","
 inoremap jj <ESC>
 
+set isk+=.
 set backspace=indent,eol,start
 set nocompatible
 set ignorecase
 set autoindent
+set copyindent
 set smartcase
 set viminfo='10,\"100,:20,%,n~/.viminfo
-set textwidth=80
+set textwidth=90
 set softtabstop=4
+set tabstop=4
+set expandtab
+set smarttab
 
-highlight OverLength ctermbg=green ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
 
-autocmd BufNewFile,BufRead *.py set ft=python
+"Highlights any line over 90chars in green
+"highlight OverLength ctermbg=green ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+"puts a red column at XXchars
+set colorcolumn=90
+
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.conf set ft=javascript
 autocmd BufNewFile,BufRead *.config set ft=javascript
@@ -56,30 +76,30 @@ autocmd BufNewFile,BufRead *.config set ft=javascript
 au! BufRead,BufNewFile *.json setfiletype json 
 au! BufRead,BufNewFile *.conf setfiletype json 
 au! BufRead,BufNewFile *.config setfiletype json 
-au! BufRead,BufNewFile *.scala setfiletype scala
-au! BufRead,BufNewFile *.py setfiletype python
-au! BufRead,BufNewFile *.c setfiletype c
 
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.conf set shiftwidth=2
-"au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.py,*.pyw set expandtab
 
-autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
-" Nearest source control ancestor
-"let g:ctrlp_working_path_mode=2  
+"autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+" For python files, automatically strip off trailing whitespace (and lines that are solely
+" whitespace) when saving
+autocmd BufWritePre *.py silent! :%s/\s\+$//
 
+"nice status bar at bottom with current/total lines, column, percent of doc
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-set laststatus=2
+:set laststatus=2
 
 nmap <silent> <C-f> :CommandTFlush<CR>
 nmap <C-k> D
 nmap <C-y> p
 
+"semi-colon is a colon
 nnoremap ; :
 
 "Carriage Return to toggle between files in window
-nnoremap <CR> :wa<CR><C-^>
+"nnoremap <CR> :wa<CR><C-^>
 
 "reformats and saves json file if you have json_reformat installed
 map <leader>j <Esc>:%!json_reformat <CR>
@@ -93,10 +113,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap t l
 xnoremap t l
-nnoremap dt d
+"nnoremap dt d
 
 "delete a word and insert
-nnoremap di dwi
+"nnoremap di dwi
 
 "Saving and quiting short-cuts
 nnoremap <leader>w :w<CR>
@@ -104,6 +124,7 @@ nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :q!<CR>
 
+"shortcuts for paste 'mode'
 nnoremap <leader>p :set paste<CR>
 nnoremap <leader>np :set nopaste<CR>
 
@@ -111,7 +132,8 @@ nnoremap <leader>np :set nopaste<CR>
 set hlsearch
 nnoremap <leader>k :nohlsearch<CR>
 
-nnoremap <leader>c <leader>c<space>
+" not sure this does anything...
+"nnoremap <leader>c <leader>c<space>
 
 " Folding set up 
 set foldmethod=indent
@@ -140,3 +162,8 @@ nnoremap <leader>< <C-w><
 nnoremap <leader>> <C-w>>
 nnoremap <leader>k <C-w>+
 nnoremap <leader>h :split<CR>
+
+
+let g:jedi#popup_on_dot = 0
+
+command! Despace :%s/\s\+$//

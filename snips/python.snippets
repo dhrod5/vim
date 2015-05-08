@@ -115,6 +115,30 @@ write_init_body(args, t[2], snip)
 		$0
 endsnippet
 
+snippet ipdb "ipdb" b
+import ipdb; ipd.set_trace()
+endsnippet
+
+snippet ipy "ipy" a
+from IPython.terminal.embed import InteractiveShellEmbed; InteractiveShellEmbed()()
+endsnippet
+
+snippet mod "module heading" b
+# -*- coding: utf-8 -*-
+
+"""
+${1:link}
+~~~~~~~~~~~~
+
+${2}
+
+:copyright: (c) 2013 by David Himrod
+:license: Apache2, see LICENSE for more details.
+
+"""
+endsnippet
+
+
 ###
 # Short cuts for imports
 ###
@@ -126,7 +150,19 @@ snippet i "import module" b
 import ${1:module} as ${2:$1}
 endsnippet
 
+snippet fdoc "doc for function" 
+    """ ${1: The description}
 
+    Args:
+		${2: args}
+
+    Returns:
+		${3: return}
+	
+	Raises: 
+		${4: raises}
+    """
+endsnippet
 
 ##############
 # PROPERTIES #
